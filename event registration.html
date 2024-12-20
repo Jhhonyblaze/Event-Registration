@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('https://images.unsplash.com/photo-1542327897-0c12c6a75b8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1500') no-repeat center center/cover;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+        }
+        .container h1 {
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            font-size: 1rem;
+            color: #555;
+            text-align: left;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .welcome-message {
+            margin: 20px 0;
+            font-size: 1.2rem;
+            color: #666;
+        }
+        .thank-you {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        #page2 {
+            background: url('https://media.istockphoto.com/id/1319942465/photo/businessman-pressing-his-finger-on-the-wooden-cubes-with-the-word-register-registration.jpg?s=612x612&w=0&k=20&c=-jBEwhDtzHjZjgxTA7jqSb6Qp7leQsEs7R0g5QtjI1s=') no-repeat center center/cover;
+            border-radius: 10px;
+            padding: 20px;
+            background-size:cover;
+        }
+
+        #page3 {
+            background: url('https://media.istockphoto.com/id/1319942465/photo/businessman-pressing-his-finger-on-the-wooden-cubes-with-the-word-register-registration.jpg?s=612x612&w=0&k=20&c=-jBEwhDtzHjZjgxTA7jqSb6Qp7leQsEs7R0g5QtjI1s=') no-repeat center center/cover;
+            border-radius: 10px;
+            padding: 20px;
+            background-size:cover;
+        }
+
+        .social-login {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .social-login a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .social-login a.google {
+            background-color: #db4437;
+        }
+
+        .social-login a.facebook {
+            background-color: #3b5998;
+        }
+
+        .social-login img {
+            height: 20px;
+            width: 20px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="page1">
+        <h1>Welcome to Event Registration</h1>
+        <p class="welcome-message">Join us for an unforgettable experience! Click the button below to start your registration.</p>
+        <a href="#page2" onclick="goToPage('page2')"><button>Register</button></a>
+    </div>
+
+    <div class="container" id="page2" style="display: none;">
+        <h1>Event Registration Form</h1>
+        <form onsubmit="handleSubmit(event)">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <div class="social-login">
+            <p>Or sign in with:</p>
+            <a href="#" class="google" onclick="googleLogin()">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" alt="Google logo">
+                Sign in with Google
+            </a>
+            <a href="#" class="facebook" onclick="facebookLogin()">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook logo">
+                Sign in with Facebook
+            </a>
+        </div>
+    </div>
+
+    <div class="container" id="page3" style="display: none;">
+        <h1>Thank You for Registering!</h1>
+        <p class="thank-you">We have received your details. See you at the event!</p>
+    </div>
+
+    <script>
+        function goToPage(pageId) {
+            document.querySelectorAll('.container').forEach(container => {
+                container.style.display = 'none';
+            });
+            document.getElementById(pageId).style.display = 'block';
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            goToPage('page3');
+        }
+
+        // Google Login Simulation
+        function googleLogin() {
+            const googleId = prompt("Enter your Google ID:");
+            if (googleId) {
+                alert(`Google ID: ${googleId} logged in successfully!`);
+            }
+        }
+
+        // Facebook Login Simulation
+        function facebookLogin() {
+            const facebookId = prompt("Enter your Facebook ID:");
+            if (facebookId) {
+                alert(`Facebook ID: ${facebookId} logged in successfully!`);
+            }
+        }
+    </script>
+</body>
+</html>
